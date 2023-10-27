@@ -5,5 +5,7 @@ def seed_db():
     Facility.drop_table()
     Facility.create_table()
 
+    Facility.create("Southside Manor", "Tampa, FL")
+    Facility.create("Hilltop Heights LTAC", "Destin, FL")
     
 seed_db()
