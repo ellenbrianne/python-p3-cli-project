@@ -30,7 +30,24 @@ def create_facility():
         print("Error -- facility was not added because:", exc)
 
 def update_facility():
-    pass
+    id_ = input("Enter the id number of the facility you want to update: ")
+    if facility := Facility.find_by_id(id_):
+        try:
+            name = input("Enter the facility's name: ")
+            facility.name = name
+            location = input("Enter the facility's location: ")
+            facility.location = location
+            facility.update()
+            print(f"Successfully udpated: {facility}")
+        except Exception as exc:
+            print(f"Error updating this facility:", exc)
+    else: 
+        print(f"Facility {id_} not found")
 
 def delete_facility():
-    pass
+    id_ = input("Enter the id number of facility you want to delete: ")
+    if facility := Facility.find_by_id(id_):
+        facility.delete()
+        print(f"Facility {id_} successfully deleted!")
+    else:
+        print(f"Facility {id_} not found")

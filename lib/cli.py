@@ -33,7 +33,7 @@ def facility_menu():
     print("3 | Add a new facility to my list")
     print("4 | Update one of my existing facilities")
     print("5 | Remove a facility from my list")
-    print("6 | Return to main menu")
+    print("Press enter to return to main menu")
 
 def facility_handler():
     f_selection = input("> ")
@@ -49,8 +49,6 @@ def facility_handler():
         update_facility()
     elif f_selection == "5":
         delete_facility()
-    elif f_selection == "6":
-        primary_menu()
 
 
 if __name__ == "__main__":
