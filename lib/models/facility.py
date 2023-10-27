@@ -89,4 +89,47 @@ class Facility:
         del type(self).all[self.id]
         self.id = None
 
+    @classmethod
+    def instance_from_db(cls, row):
+        facility = cls.all.get(row[0])
+        if facility:
+            facility.name = row[1]
+            facility.location = row[2]
+        else:
+            facility = cls(row[1], row[2])
+            facility.id = row[0]
+            cls.all[facility.id] = facility
+        return facility
     
+    @classmethod
+    def get_all(cls):
+        sql = """
+            SELECT * FROM facilities;
+        """
+        f_table = CURSOR.execute(sql).fetchall()
+
+        return [cls.instance_from_db(row) for row in f_table]
+    
+    @classmethod
+    def find_by_id(cls, id):
+        sql = """
+            SELECT * FROM facilities
+            WHERE id = ?;
+        """
+        f_row = CURSOR.execute(sql, (id,)).fetchone()
+
+        return cls.instance_from_db(f_row) if f_row else None
+    
+    @classmethod
+    def find_by_name(cls, name):
+        sql = """
+            SELECT * FROM facilities
+            WHERE name is ?;
+        """
+        f_row = CURSOR.execute(sql, (name,)).fetchone()
+
+        return cls.instance_from_db(f_row) if f_row else None
+    
+    # add method to list all patients in associated facility
+    # will import Patient here and use facility_id which will exist
+    # in patients table
