@@ -52,7 +52,6 @@ class Facility:
         CURSOR.execute(sql)
         CONN.commit()
 
-    @classmethod
     def save(self):
         sql = """
             INSERT INTO facilities (name, location)
@@ -63,3 +62,31 @@ class Facility:
 
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
+
+    @classmethod
+    def create(cls, name, location):
+        facility = cls(name, location)
+        facility.save()
+        return facility
+    
+    def update(self):
+        sql = """
+            UPDATE facilities
+            SET name = ?, location = ?
+            WHERE id = ?;
+        """
+        CURSOR.execute(sql, (self.name, self.location, self.id))
+        CONN.commit()
+
+    def delete(self):
+        sql = """
+            DELETE FROM facilities
+            WHERE id = ?;
+        """
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+
+        del type(self).all[self.id]
+        self.id = None
+
+    
