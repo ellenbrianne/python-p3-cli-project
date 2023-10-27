@@ -33,4 +33,33 @@ class Facility:
         else:
             raise ValueError("Must include facility location")
         
-    
+    @classmethod
+    def create_table(cls):
+        sql = """
+            CREATE TABLE IF NOT EXISTS facilities(
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            location TEXT);
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
+
+    @classmethod
+    def drop_table(cls):
+        sql = """
+            DROP TABLE IF EXISTS facilities;
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
+
+    @classmethod
+    def save(self):
+        sql = """
+            INSERT INTO facilities (name, location)
+            VALUES (?, ?);
+        """
+        CURSOR.execute(sql, (self.name, self.location))
+        CONN.commit()
+
+        self.id = CURSOR.lastrowid
+        type(self).all[self.id] = self
