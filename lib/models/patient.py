@@ -56,7 +56,7 @@ class Patient:
             name TEXT,
             diagnosis TEXT,
             facility_id INTEGER,
-            FOREIGN KEY (facility_id) REFERENCES facilities(id))
+            FOREIGN KEY (facility_id) REFERENCES facilities(id));
         """
         CURSOR.execute(sql)
         CONN.commit()
@@ -68,3 +68,41 @@ class Patient:
         """
         CURSOR.execute(sql)
         CONN.commit()
+
+    def save(self):
+        sql = """
+                INSERT INTO patients (name, diagnosis, facility_id)
+                VALUES (?, ?, ?);
+        """
+        CURSOR.execute(sql, (self.name, self.diagnosis, self.facility_id))
+        CONN.commit()
+
+        self.id = CURSOR.lastrowid
+        type(self).all[self.id] = self
+
+    @classmethod
+    def create(cls, name, diagnosis, facility_id):
+        patient = cls(name, diagnosis, facility_id)
+        patient.save()
+        return patient
+
+    def update(self):
+        sql = """
+            UPDATE patients
+            SET name = ?, diagnosis = ?, facility_id = ?
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.name, self.diagnosis,
+                             self.facility_id, self.id))
+        CONN.commit()
+
+    def delete(self):
+        sql = """
+            DELETE FROM patients
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+
+        del type(self).all[self.id]
+        self.id = None
