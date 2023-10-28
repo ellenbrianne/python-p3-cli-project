@@ -1,4 +1,5 @@
 from models.facility import Facility
+from models.patient import Patient
 
 def exit_manager():
     print("Closing Hospice Manager...")
@@ -51,3 +52,9 @@ def delete_facility():
         print(f"Facility {id_} successfully deleted!")
     else:
         print(f"Facility {id_} not found")
+
+### PATIENT HELPERS
+
+def list_patients():
+    patients = Patient.get_all()
+    for p in patients: print(p)
