@@ -47,3 +47,24 @@ class Patient:
             self._facility_id = facility_id
         else:
             raise ValueError("facility_id must correspond with a facility in the database")
+        
+    @classmethod
+    def create_table(cls):
+        sql = """
+            CREATE TABLE IF NOT EXISTS patients (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            diagnosis TEXT,
+            facility_id INTEGER,
+            FOREIGN KEY (facility_id) REFERENCES facilities(id))
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
+
+    @classmethod
+    def drop_table(cls):
+        sql = """
+            DROP TABLE IF EXISTS patients;
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
