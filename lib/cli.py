@@ -1,7 +1,7 @@
 from helpers import (
     exit_manager
 )
-from lib.cli_submenus import (
+from cli_submenus import (
     facility_menu,
     facility_handler,
     patient_menu,
@@ -12,13 +12,13 @@ from lib.cli_submenus import (
 def main():
     while True:
         primary_menu()
-        p_selection = input("> ")
-        if p_selection == "2":
+        selection = input("> ")
+        if selection == "2":
             exit_manager()
-        elif p_selection == "0":
+        elif selection == "0":
             facility_menu()
             facility_handler()
-        elif p_selection == "1":
+        elif selection == "1":
             patient_menu()
             patient_handler()
 
