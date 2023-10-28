@@ -71,34 +71,37 @@ def search_p_id():
     print(patient) if patient else print(
         f"Patient {id_} not found")
 
-def create_facility():
-    name = input("Enter the new facility's name: ")
-    location = input("Enter the new facility's location: ")
+def create_patient():
+    name = input("Enter the new patient's name: ")
+    diagnosis = input("Enter the new patient's diagnosis: ")
+    facility_id = input("Enter the new patient's facility id: ")
     try:
-        facility = Facility.create(name, location)
-        print(f"{name} has been added to your facilities!\n{facility}")
+        patient = Patient.create(name, diagnosis, facility_id)
+        print(f"{name} has been added to your patients!\n{patient}")
     except Exception as exc:
-        print("Error -- facility was not added because:", exc)
+        print("Error -- patient was not added because:", exc)
 
-def update_facility():
-    id_ = input("Enter the id number of the facility you want to update: ")
-    if facility := Facility.find_by_id(id_):
+def update_patient():
+    id_ = input("Enter the id number of the patient you want to update: ")
+    if patient := Patient.find_by_id(id_):
         try:
-            name = input("Enter the facility's name: ")
-            facility.name = name
-            location = input("Enter the facility's location: ")
-            facility.location = location
-            facility.update()
-            print(f"Successfully udpated: {facility}")
+            name = input("Enter the patient's name: ")
+            patient.name = name
+            diagnosis = input("Enter the patient's diagnosis: ")
+            patient.diagnosis = diagnosis
+            facility_id = input("Enter the patient's facility id: ")
+            patient.facility_id = facility_id
+            patient.update()
+            print(f"Successfully udpated: {patient}")
         except Exception as exc:
-            print(f"Error updating this facility:", exc)
+            print(f"Error updating this patient:", exc)
     else: 
-        print(f"Facility {id_} not found")
+        print(f"Patient {id_} not found")
 
-def delete_facility():
-    id_ = input("Enter the id number of facility you want to delete: ")
-    if facility := Facility.find_by_id(id_):
-        facility.delete()
-        print(f"Facility {id_} successfully deleted!")
+def delete_patient():
+    id_ = input("Enter the id number of patient you want to delete: ")
+    if patient := Patient.find_by_id(id_):
+        patient.delete()
+        print(f"Patient {id_} successfully deleted!")
     else:
-        print(f"Facility {id_} not found")
+        print(f"Patient {id_} not found")
