@@ -90,7 +90,7 @@ class Patient:
         sql = """
             UPDATE patients
             SET name = ?, diagnosis = ?, facility_id = ?
-            WHERE id = ?
+            WHERE id = ?;
         """
         CURSOR.execute(sql, (self.name, self.diagnosis,
                              self.facility_id, self.id))
@@ -99,10 +99,52 @@ class Patient:
     def delete(self):
         sql = """
             DELETE FROM patients
-            WHERE id = ?
+            WHERE id = ?;
         """
         CURSOR.execute(sql, (self.id,))
         CONN.commit()
 
         del type(self).all[self.id]
         self.id = None
+
+    @classmethod
+    def instance_from_db(cls, row):
+        patient = cls.all.get(row[0])
+        if patient:
+            patient.name = row[1]
+            patient.diagnosis = row[2]
+            patient.facility_id = row[3]
+        else:
+            patient = cls(row[1], row[2], row[3])
+            patient.id = row[0]
+            cls.all[patient.id] = patient
+        return patient
+    
+    @classmethod
+    def get_all(cls):
+        sql = """
+            SELECT * FROM patients;
+        """
+        p_table = CURSOR.execute(sql).fetchall()
+
+        return [cls.instance_from_db(row) for row in p_table]
+    
+    @classmethod
+    def find_by_id(cls, id):
+        sql = """
+            SELECT * FROM patients
+            WHERE id = ?;
+        """
+        p_row = CURSOR.execute(sql, (id,)).fetchone()
+
+        return cls.instance_from_db(p_row) if p_row else None
+    
+    @classmethod
+    def find_by_name(cls, name):
+        sql = """
+            SELECT * FROM patients
+            WHERE name is ?;
+        """
+        p_row = CURSOR.execute(sql, (name,)).fetchone()
+
+        return cls.instance_from_db(p_row) if p_row else None
