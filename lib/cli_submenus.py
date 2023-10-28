@@ -1,5 +1,4 @@
 from helpers import (
-    exit_manager,
     list_facilities,
     search_f_name,
     search_f_id,
@@ -13,27 +12,7 @@ from helpers import (
     update_patient,
     delete_patient
 )
-
-
-def main():
-    while True:
-        primary_menu()
-        p_selection = input("> ")
-        if p_selection == "2":
-            exit_manager()
-        elif p_selection == "0":
-            facility_menu()
-            facility_handler()
-        elif p_selection == "1":
-            patient_menu()
-            patient_handler()
-
-def primary_menu():
-    print("Type the number of the section you need to manage: Facilities or Patients?")
-    print("0 | Facilities")
-    print("1 | Patients")
-    print("2 | Exit Hospice Manager")
-
+    
 def facility_menu():
     print("How would you like to manage your facilities? Enter the corresponding number.")
     print("0 | List all of my facilities")
@@ -86,7 +65,3 @@ def patient_handler():
         delete_patient()
     elif p_selection == "6":
         print("create helper for facility id search")
-
-
-if __name__ == "__main__":
-    main()
