@@ -5,6 +5,7 @@ class Patient:
     all = {}
 
     def __init__(self, name, diagnosis, facility_id, id=None):
+        self.id = id
         self.name = name
         self.diagnosis = diagnosis
         self.facility_id = facility_id
