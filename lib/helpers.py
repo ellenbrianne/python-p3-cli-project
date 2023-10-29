@@ -76,7 +76,7 @@ def create_patient():
     diagnosis = input("Enter the new patient's diagnosis: ")
     facility_id = input("Enter the new patient's facility id: ")
     try:
-        patient = Patient.create(name, diagnosis, facility_id)
+        patient = Patient.create(name, diagnosis, int(facility_id))
         print(f"{name} has been added to your patients!\n{patient}")
     except Exception as exc:
         print("Error -- patient was not added because:", exc)
@@ -90,7 +90,7 @@ def update_patient():
             diagnosis = input("Enter the patient's diagnosis: ")
             patient.diagnosis = diagnosis
             facility_id = input("Enter the patient's facility id: ")
-            patient.facility_id = facility_id
+            patient.facility_id = int(facility_id)
             patient.update()
             print(f"Successfully udpated: {patient}")
         except Exception as exc:
