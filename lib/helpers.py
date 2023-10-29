@@ -1,6 +1,6 @@
 from models.facility import Facility
 from models.patient import Patient
-
+import ipdb
 def exit_manager():
     print("Closing Hospice Manager...")
     exit() 
@@ -107,4 +107,9 @@ def delete_patient():
         print(f"Patient {id_} not found")
 
 def match_patients():
-    pass
+    id_ = input("Enter the id number of the facility whose patients you'd like to see: ")
+    patients = Facility.find_patients(id_)
+    if patients:
+        for p in patients: print(p)
+    else:
+        print(f"No matching patients found for Facility {id_}")
