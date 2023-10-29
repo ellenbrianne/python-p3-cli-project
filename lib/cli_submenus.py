@@ -10,7 +10,8 @@ from helpers import (
     search_p_id,
     create_patient,
     update_patient,
-    delete_patient
+    delete_patient,
+    match_patients
 )
     
 def facility_menu():
@@ -64,4 +65,4 @@ def patient_handler():
     elif p_selection == "5":
         delete_patient()
     elif p_selection == "6":
-        print("create helper for facility id search")
+        match_patients()

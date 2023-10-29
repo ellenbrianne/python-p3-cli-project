@@ -105,3 +105,6 @@ def delete_patient():
         print(f"Patient {id_} successfully deleted!")
     else:
         print(f"Patient {id_} not found")
+
+def match_patients():
+    pass
