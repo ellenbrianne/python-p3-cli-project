@@ -130,13 +130,12 @@ class Facility:
 
         return cls.instance_from_db(f_row) if f_row else None
 
-    @classmethod
-    def find_patients(cls, id):
+    def find_patients(self):
         from models.patient import Patient
         sql = """
             SELECT * FROM patients
             WHERE facility_id = ?
         """
-        CURSOR.execute(sql, (id,),)
+        CURSOR.execute(sql, (self.id,),)
         patients = CURSOR.fetchall()
         return [Patient.instance_from_db(p) for p in patients]

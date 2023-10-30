@@ -149,12 +149,3 @@ class Patient:
         p_row = CURSOR.execute(sql, (name,)).fetchone()
 
         return cls.instance_from_db(p_row) if p_row else None
-  
-    @classmethod
-    def find_by_facility_id(cls, facility_id):
-        sql = """
-            SELECT * FROM patients
-            WHERE facility_id = ?
-        """
-        rows = CURSOR.execute(sql, (facility_id,)).fetchall()
-        return [cls.instance_from_db(row) for row in rows]
