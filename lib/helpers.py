@@ -1,6 +1,6 @@
 from models.facility import Facility
 from models.patient import Patient
-import ipdb
+
 def exit_manager():
     print("Closing Hospice Manager...")
     exit() 
