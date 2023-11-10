@@ -1,6 +1,7 @@
 from helpers import (
-    exit_manager
+    exit_manager,
 )
+
 from cli_submenus import (
     facility_menu,
     facility_handler,
@@ -23,9 +24,9 @@ def main():
             patient_handler()
 
 def primary_menu():
-    print("Type the number of the section you need to manage: Facilities or Patients?")
-    print("1 | Facilities")
-    print("2 | Patients")
+    print("Welcome to Hospice Manager!")
+    print("1 | View My Facilities")
+    print("2 | View My Patients")
     print("3 | Exit Hospice Manager")
 
 

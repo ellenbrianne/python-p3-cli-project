@@ -10,10 +10,9 @@ class Patient:
         self.diagnosis = diagnosis
         self.facility_id = facility_id
 
-    def __repr__(self):
+    def __str__(self):
         return (
-            f"<Patient {self.id}: {self.name}, {self.diagnosis}, " +
-            f"Facility ID: {self.facility_id}>"
+            f"{self.id} | {self.name}, {self.diagnosis}"
         )
     
     @property

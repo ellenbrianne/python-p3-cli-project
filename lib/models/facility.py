@@ -8,8 +8,8 @@ class Facility:
         self.name = name
         self.location = location
 
-    def __repr__(self):
-        return f"<Facility {self.id}: {self.name} in {self.location}>"
+    def __str__(self):
+        return f"{self.id} | {self.name} in {self.location}"
     
     @property
     def name(self):
