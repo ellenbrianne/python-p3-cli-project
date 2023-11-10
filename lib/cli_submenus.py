@@ -40,7 +40,6 @@ def facility_handler():
 
 
 
-
 def patient_menu():
     print("How would you like to handle your patients? Enter the corresponding number.")
     print("1 | List all of my patients")
