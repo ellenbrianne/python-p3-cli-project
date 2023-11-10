@@ -8,9 +8,12 @@ def exit_manager():
 def list_facilities():
     facilities = Facility.get_all()
     counter = 1
+    f_dict = {}
     for f in facilities:
-        print(f"{counter} | {f.name} in {f.location}")
+        f_dict[counter] = f"{f.name}, {f.location}"
         counter += 1
+    for key, value in f_dict.items():
+        print(key, "|", value)
 
 def search_f_name():
     name = input("Enter the facility's name: ")
@@ -60,7 +63,10 @@ def delete_facility():
 
 def list_patients():
     patients = Patient.get_all()
-    for p in patients: print(p)
+    counter = 1
+    for p in patients: 
+        print(f"{counter} | {p.name}, {p.diagnosis}")
+        counter += 1
 
 def search_p_name():
     name = input("Enter the patient's name: ")

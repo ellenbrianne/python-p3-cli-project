@@ -12,8 +12,8 @@ from helpers import (
 )
     
 def facility_menu():
-    print("How would you like to manage your facilities? Enter the corresponding number.")
-    print("1 | List all my facilities")
+    print("Facility Menu:")
+    print("1 | List all of my facilities")
     print("2 | Search for a facility by name")
     print("3 | Add a new facility to my list")
     print("4 | Update one of my existing facilities")
@@ -21,6 +21,7 @@ def facility_menu():
     print("6 | Return to main menu")
 
 def facility_handler():
+    facility_menu()
     selection = input("> ")
     if selection == "1":
         list_facilities()
@@ -35,6 +36,8 @@ def facility_handler():
     elif selection == "6":
         from cli import main
         main()
+    
+
 
 
 

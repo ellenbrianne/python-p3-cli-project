@@ -10,9 +10,11 @@ def seed_db():
 
     southside = Facility.create("Southside Manor", "Tampa, FL")
     hilltop = Facility.create("Hilltop Heights LTAC", "Destin, FL")
+    lakeshore = Facility.create("Lakeshore", "Pensacola, FL")
     Patient.create("John H", "CHF", southside.id)
-    Patient.create("Amber F", "stroke", hilltop.id)
+    Patient.create("Amber F", "CVA", hilltop.id)
     Patient.create("Whitney L", "cardiomyopathy", hilltop.id)
     Patient.create("Lucas J", "pancreatic CA", southside.id)
+    Patient.create("Shelly B", "seizures", lakeshore.id)
     
 seed_db()
