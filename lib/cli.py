@@ -11,17 +11,17 @@ from cli_submenus import (
 
 
 def main():
-    while True:
-        primary_menu()
-        selection = input("> ")
-        if selection == "3":
-            exit_manager()
-        elif selection == "1":
+    primary_menu()
+    selection = input("> ")
+    while selection < "3":
+        if selection == "1":
             facility_menu()
             facility_handler()
         elif selection == "2":
             patient_menu()
             patient_handler()
+    
+    exit_manager()
 
 def primary_menu():
     print("Welcome to Hospice Manager!")

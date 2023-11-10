@@ -18,20 +18,23 @@ def facility_menu():
     print("3 | Add a new facility to my list")
     print("4 | Update one of my existing facilities")
     print("5 | Remove a facility from my list")
-    print("Press enter to return to main menu")
+    print("6 | Return to main menu")
 
 def facility_handler():
-    f_selection = input("> ")
-    if f_selection == "1":
+    selection = input("> ")
+    if selection == "1":
         list_facilities()
-    elif f_selection == "2":
+    elif selection == "2":
         search_f_name()
-    elif f_selection == "3":
+    elif selection == "3":
         create_facility()
-    elif f_selection == "4":
+    elif selection == "4":
         update_facility()
-    elif f_selection == "5":
+    elif selection == "5":
         delete_facility()
+    elif selection == "6":
+        from cli import main
+        main()
 
 
 
@@ -42,16 +45,20 @@ def patient_menu():
     print("3 | Add a new patient to my list")
     print("4 | Update one of my existing patients")
     print("5 | Remove a patient from my list")
+    print("6 | Return to main menu")
 
 def patient_handler():
-    p_selection = input("> ")
-    if p_selection == "1":
+    selection = input("> ")
+    if selection == "1":
         list_patients()
-    elif p_selection == "2":
+    elif selection == "2":
         search_p_name()
-    elif p_selection == "3":
+    elif selection == "3":
         create_patient()
-    elif p_selection == "4":
+    elif selection == "4":
         update_patient()
-    elif p_selection == "5":
+    elif selection == "5":
         delete_patient()
+    elif selection == "6":
+        from cli import main
+        main()
