@@ -82,12 +82,12 @@ def create_patient():
         print("Error -- patient was not added because:", exc)
 
 def update_patient():
-    id_ = input("Enter the id number of the patient you want to update: ")
-    if patient := Patient.find_by_id(id_):
+    name = input("Enter the name of the patient you want to update: ")
+    if patient := Patient.find_by_name(name):
         try:
-            name = input("Enter the patient's name: ")
+            name = input("Enter the patient's new name: ")
             patient.name = name
-            diagnosis = input("Enter the patient's diagnosis: ")
+            diagnosis = input("Enter the patient's new diagnosis: ")
             patient.diagnosis = diagnosis
             facility_id = input("Enter the patient's facility id: ")
             patient.facility_id = int(facility_id)
@@ -96,7 +96,7 @@ def update_patient():
         except Exception as exc:
             print(f"Error updating this patient:", exc)
     else: 
-        print(f"Patient {id_} not found")
+        print(f"Patient {name} not found")
 
 def delete_patient():
     id_ = input("Enter the id number of patient you want to delete: ")
