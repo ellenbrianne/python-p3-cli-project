@@ -7,7 +7,10 @@ def exit_manager():
 
 def list_facilities():
     facilities = Facility.get_all()
-    for f in facilities: print(f)
+    counter = 1
+    for f in facilities:
+        print(f"{counter} | {f.name} in {f.location}")
+        counter += 1
 
 def search_f_name():
     name = input("Enter the facility's name: ")
