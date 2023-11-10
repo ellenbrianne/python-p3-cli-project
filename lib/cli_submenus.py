@@ -43,8 +43,6 @@ def patient_menu():
     print("3 | Add a new patient to my list")
     print("4 | Update one of my existing patients")
     print("5 | Remove a patient from my list")
-    print("6 | List patients according to facility")
-    print("Press enter to return to main menu")
 
 def patient_handler():
     p_selection = input("> ")
@@ -58,5 +56,3 @@ def patient_handler():
         update_patient()
     elif p_selection == "5":
         delete_patient()
-    elif p_selection == "6":
-        match_patients()
