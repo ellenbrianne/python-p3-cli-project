@@ -1,13 +1,11 @@
 from helpers import (
     list_facilities,
     search_f_name,
-    search_f_id,
     create_facility,
     update_facility,
     delete_facility,
     list_patients,
     search_p_name,
-    search_p_id,
     create_patient,
     update_patient,
     delete_patient,
@@ -16,9 +14,8 @@ from helpers import (
     
 def facility_menu():
     print("How would you like to manage your facilities? Enter the corresponding number.")
-    print("0 | List all of my facilities")
-    print("1 | Search for a facility by name")
-    print("2 | Search for a facility by id number")
+    print("1 | List all of my facilities")
+    print("2 | Search for a facility by name")
     print("3 | Add a new facility to my list")
     print("4 | Update one of my existing facilities")
     print("5 | Remove a facility from my list")
@@ -26,12 +23,12 @@ def facility_menu():
 
 def facility_handler():
     f_selection = input("> ")
-    if f_selection == "0":
+    if f_selection == "1":
         list_facilities()
-    elif f_selection == "1":
+    elif f_selection == "2":
         search_f_name()
     elif f_selection == "2":
-        search_f_id()
+        search_f_name
     elif f_selection == "3":
         create_facility()
     elif f_selection == "4":
@@ -41,9 +38,8 @@ def facility_handler():
 
 def patient_menu():
     print("How would you like to handle your patients? Enter the corresponding number.")
-    print("0 | List all of my patients")
-    print("1 | Search for a patient by name")
-    print("2 | Search for a patient by id number")
+    print("1 | List all of my patients")
+    print("2 | Search for a patient by name")
     print("3 | Add a new patient to my list")
     print("4 | Update one of my existing patients")
     print("5 | Remove a patient from my list")
@@ -52,12 +48,10 @@ def patient_menu():
 
 def patient_handler():
     p_selection = input("> ")
-    if p_selection == "0":
+    if p_selection == "1":
         list_patients()
-    elif p_selection == "1":
-        search_p_name()
     elif p_selection == "2":
-        search_p_id()
+        search_p_name()
     elif p_selection == "3":
         create_patient()
     elif p_selection == "4":

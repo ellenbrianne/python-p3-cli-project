@@ -13,20 +13,20 @@ def main():
     while True:
         primary_menu()
         selection = input("> ")
-        if selection == "2":
+        if selection == "3":
             exit_manager()
-        elif selection == "0":
+        elif selection == "1":
             facility_menu()
             facility_handler()
-        elif selection == "1":
+        elif selection == "2":
             patient_menu()
             patient_handler()
 
 def primary_menu():
     print("Type the number of the section you need to manage: Facilities or Patients?")
-    print("0 | Facilities")
-    print("1 | Patients")
-    print("2 | Exit Hospice Manager")
+    print("1 | Facilities")
+    print("2 | Patients")
+    print("3 | Exit Hospice Manager")
 
 
 if __name__ == "__main__":
