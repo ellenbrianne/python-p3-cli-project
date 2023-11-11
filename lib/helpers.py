@@ -109,8 +109,7 @@ def delete_patient():
     else:
         print(f"Patient {id_} not found")
 
-def match_patients():
-    id_ = input("Enter the id number of the facility whose patients you'd like to see: ")
+def match_patients(id_):
     if facility := Facility.find_by_id(id_):
         patients = facility.find_patients()
         for p in patients: print(p)

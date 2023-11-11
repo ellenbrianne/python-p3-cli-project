@@ -9,7 +9,7 @@ class Facility:
         self.location = location
 
     def __str__(self):
-        return f"{self.name} in {self.location}"
+        return f"{self.id} | {self.name} in {self.location}"
     
     @property
     def name(self):

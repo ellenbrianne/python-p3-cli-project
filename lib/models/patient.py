@@ -12,7 +12,7 @@ class Patient:
 
     def __str__(self):
         return (
-            f"{self.name}, {self.diagnosis}"
+            f"{self.id} | {self.name}, {self.diagnosis}"
         )
     
     @property

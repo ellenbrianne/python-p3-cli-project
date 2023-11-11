@@ -9,6 +9,7 @@ from helpers import (
     create_patient,
     update_patient,
     delete_patient,
+    match_patients
 )
     
 def facility_menu():
@@ -25,6 +26,7 @@ def facility_handler():
     selection = input("> ")
     if selection == "1":
         list_facilities()
+        f_sub_menu()
     elif selection == "2":
         search_f_name()
     elif selection == "3":
@@ -36,8 +38,12 @@ def facility_handler():
     elif selection == "6":
         from cli import main
         main()
-    
 
+def f_sub_menu():
+    selection = input("Select a facility number to view their patients: ")
+    patients = match_patients(selection)
+    print(patients)
+    
 
 
 def patient_menu():
