@@ -17,56 +17,58 @@ def facility_menu():
     print("1 | List all of my facilities")
     print("2 | Search for a facility by name")
     print("3 | Add a new facility to my list")
-    print("4 | Update one of my existing facilities")
-    print("5 | Remove a facility from my list")
-    print("6 | Return to main menu")
+    print("4 | Return to main menu")
 
 def facility_handler():
     facility_menu()
     selection = input("> ")
     if selection == "1":
         list_facilities()
-        f_sub_menu()
+        f_sub_menu_handler()
     elif selection == "2":
         search_f_name()
     elif selection == "3":
         create_facility()
     elif selection == "4":
-        update_facility()
-    elif selection == "5":
-        delete_facility()
-    elif selection == "6":
         from cli import main
         main()
 
 def f_sub_menu():
-    selection = input("Select a facility number to view their patients: ")
-    patients = match_patients(selection)
-    print(patients)
+    print("Select from one of these options to handle your facilities info: ")
+    print("1 | View all patients in one facility")
+    print("2 | Update a facility")
+    print("3 | Delete a facility")
     
-
-
-def patient_menu():
-    print("How would you like to handle your patients? Enter the corresponding number.")
-    print("1 | List all of my patients")
-    print("2 | Search for a patient by name")
-    print("3 | Add a new patient to my list")
-    print("4 | Update one of my existing patients")
-    print("5 | Remove a patient from my list")
-    print("6 | Return to main menu")
-
-def patient_handler():
+def f_sub_menu_handler():
+    f_sub_menu()
     selection = input("> ")
     if selection == "1":
-        list_patients()
+        match_patients()
+        patient_handler()
     elif selection == "2":
-        search_p_name()
+        update_facility()
     elif selection == "3":
+        delete_facility()
+    
+
+def patient_menu():
+    print("How would you like to handle these patients?")
+    print("1 | Search by name")
+    print("2 | Add a new patient to this facility's list")
+    print("3 | Update one of these patients")
+    print("4 | Remove one of these patients")
+    print("5 | Return to facility menu")
+
+def patient_handler():
+    patient_menu()
+    selection = input("> ")
+    if selection == "1":
+        search_p_name()
+    elif selection == "2":
         create_patient()
-    elif selection == "4":
+    elif selection == "3":
         update_patient()
-    elif selection == "5":
+    elif selection == "4":
         delete_patient()
-    elif selection == "6":
-        from cli import main
-        main()
+    elif selection == "5":
+        facility_handler()

@@ -3,7 +3,6 @@ from helpers import (
 )
 
 from cli_submenus import (
-    facility_menu,
     facility_handler
 )
 
