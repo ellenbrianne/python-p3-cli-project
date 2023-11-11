@@ -1,10 +1,12 @@
-from helpers import (
+from facility_helpers import (
     list_facilities,
     search_f_name,
     create_facility,
     update_facility,
-    delete_facility,
-    list_patients,
+    delete_facility
+)
+
+from patient_helpers import (
     search_p_name,
     create_patient,
     update_patient,
