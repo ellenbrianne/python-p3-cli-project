@@ -1,8 +1,8 @@
 # Hospice Manager
 
----
+
 ## Purpose
----
+
 This project is meant to assist healthcare workers, specifically hospice providers,
 with managing their assigned facilities and patients.
 Functionality within the Command-Line Interface menu includes:
@@ -11,8 +11,10 @@ Functionality within the Command-Line Interface menu includes:
   + adding, removing, and updating facilities,
   + and adding, removing, and updating patients
 
-## Installation
 ---
+
+## Installation
+
 1. After you've forked and cloned this repo to your local environment, 
 open the project and run
 
@@ -36,13 +38,16 @@ to enter the CLI menu and follow the prompts to facilitate your workflow!
 
 `python lib/cli.py`
 
-## Usage
 ---
+
+## Usage
+
 Once inside the CLI
   + enter the number that precedes whichever option you'd like to select,
   + follow the prompts,
   + repeat until you're ready to exit
 
-#### Notes
 ---
+
+#### Notes
 As always, I'd appreciate any and all feedback and constructive criticism! Thanks for visiting!
