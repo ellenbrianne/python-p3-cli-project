@@ -36,6 +36,10 @@ def facility_handler():
         from cli import main
         main()
 
+
+
+
+
 def f_sub_menu():
     print("Select from one of these options to handle your facilities info: ")
     print("1 | View all patients in one facility")
@@ -56,6 +60,25 @@ def f_sub_menu_handler():
     elif selection == "4":
         facility_handler()
     
+
+def f_search_menu():
+    print("What would you like to do with this facility? ")
+    print("1 | Update info")
+    print("2 | Delete this facility")
+    print("3 | Return to facility menu")
+
+def f_search_handler():
+    f_search_menu()
+    selection = input("> ")
+    if selection == "1":
+        update_facility()
+    elif selection == "2":
+        delete_facility()
+    elif selection == "3":
+        facility_handler()
+
+
+
 
 def patient_menu():
     print("How would you like to handle these patients?")
@@ -93,21 +116,5 @@ def pt_search_handler(id_):
         update_patient(id_)
     elif selection == "2":
         delete_patient()
-    elif selection == "3":
-        facility_handler()
-
-def f_search_menu():
-    print("What would you like to do with this facility? ")
-    print("1 | Update info")
-    print("2 | Delete this facility")
-    print("3 | Return to facility menu")
-
-def f_search_handler():
-    f_search_menu()
-    selection = input("> ")
-    if selection == "1":
-        update_facility()
-    elif selection == "2":
-        delete_facility()
     elif selection == "3":
         facility_handler()
