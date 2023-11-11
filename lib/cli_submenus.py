@@ -27,7 +27,7 @@ def facility_handler():
         f_sub_menu_handler()
     elif selection == "2":
         search_f_name()
-        f_sub_menu_handler()
+        f_search_handler()
     elif selection == "3":
         create_facility()
     elif selection == "4":
@@ -68,11 +68,44 @@ def patient_handler(id_):
     selection = input("> ")
     if selection == "1":
         search_p_name()
+        pt_search_handler(id_)
     elif selection == "2":
         create_patient(id_)
     elif selection == "3":
-        update_patient()
+        update_patient(id_)
     elif selection == "4":
         delete_patient()
     elif selection == "5":
+        facility_handler()
+
+def pt_search_menu():
+    print("What would you like to do with this patient? ")
+    print("1 | Update info")
+    print("2 | Delete this patient")
+    print("3 | Return to facility menu")
+
+def pt_search_handler(id_):
+    pt_search_menu()
+    selection = input("> ")
+    if selection == "1":
+        update_patient(id_)
+    elif selection == "2":
+        delete_patient()
+    elif selection == "3":
+        facility_handler()
+
+def f_search_menu():
+    print("What would you like to do with this facility? ")
+    print("1 | Update info")
+    print("2 | Delete this facility")
+    print("3 | Return to facility menu")
+
+def f_search_handler():
+    f_search_menu()
+    selection = input("> ")
+    if selection == "1":
+        update_facility()
+    elif selection == "2":
+        delete_facility()
+    elif selection == "3":
         facility_handler()

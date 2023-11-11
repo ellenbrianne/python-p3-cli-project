@@ -15,6 +15,7 @@ def search_f_name():
     facility = Facility.find_by_name(name)
     print(facility) if facility else print(
         f"{name} not found")
+    return facility.id
 
 def search_f_id():
     id_ = input("Enter the facility's id number: ")
@@ -81,16 +82,15 @@ def create_patient(id_):
     except Exception as exc:
         print("Error -- patient was not added because:", exc)
 
-def update_patient():
-    id_ = input("Enter the number of the patient you want to update: ")
-    if patient := Patient.find_by_id(id_):
+def update_patient(id_):
+    p_id = input("Enter the number of the patient you want to update: ")
+    if patient := Patient.find_by_id(p_id):
         try:
             name = input("Enter the patient's new name: ")
             patient.name = name
             diagnosis = input("Enter the patient's new diagnosis: ")
             patient.diagnosis = diagnosis
-            facility_id = input("Enter the patient's facility id: ")
-            patient.facility_id = int(facility_id)
+            patient.facility_id = int(id_)
             patient.update()
             print(f"Successfully udpated: {patient}")
         except Exception as exc:
@@ -110,7 +110,7 @@ def match_patients():
     id_ = input("Enter the facility's number to view their patients: ")
     if facility := Facility.find_by_id(id_):
         patients = facility.find_patients()
-        print(f"{facility.name} PATIENTS:")
+        print(f"{facility.name}'s PATIENTS:")
         for p in patients: print(p)
     else:
         print(f"No matching patients found for Facility {id_}")
