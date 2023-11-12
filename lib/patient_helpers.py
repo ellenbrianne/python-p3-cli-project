@@ -16,7 +16,7 @@ def create_patient(id_):
         print("Error -- patient was not added because:", exc)
 
 def update_patient(id_):
-    p_id = input("Enter the number of the patient you want to update: ")
+    p_id = input("Verify the number of the patient you want to update: ")
     if patient := Patient.find_by_id(p_id):
         try:
             name = input("Enter the patient's new name: ")
