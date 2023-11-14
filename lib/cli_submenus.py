@@ -59,7 +59,6 @@ def f_sub_menu_handler():
         delete_facility()
     elif selection == "4":
         facility_handler()
-    
 
 def f_search_menu():
     print("What would you like to do with this facility? ")
