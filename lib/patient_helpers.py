@@ -6,12 +6,21 @@ def search_p_name():
     print(patient) if patient else print(
         f"{name} not found")
 
-def create_patient(id_):
+def create_patient(f):
     name = input("Enter the new patient's name: ")
     diagnosis = input("Enter the new patient's diagnosis: ")
+    from models.facility import Facility
     try:
-        Patient.create(name, diagnosis, int(id_))
+        Patient.create(name, diagnosis, int(f.id))
         print(f"{name} has been added to your patients!")
+
+        patients = f.find_patients()
+        print(f"{f.name}'s PATIENTS:")
+        for index, p in enumerate(patients, start=1):
+            print(f"{index} | {p.name}, {p.diagnosis}")
+
+        from cli_submenus import patient_handler
+        patient_handler(f)
     except Exception as exc:
         print("Error -- patient was not added because:", exc)
 
@@ -62,4 +71,4 @@ def match_patients():
     else:
         print(f"No matching patients found for Facility {choice}")
 
-    return match.id
+    return match

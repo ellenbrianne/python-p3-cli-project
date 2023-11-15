@@ -49,8 +49,8 @@ def f_sub_menu_handler():
     selection = input("> ")
     while selection < "5":
         if selection == "1":
-            f_id = match_patients()
-            patient_handler(f_id)
+            match = match_patients()
+            patient_handler(match)
         elif selection == "2":
             update_facility()
             list_facilities()
@@ -110,19 +110,19 @@ def patient_menu():
     print("5 | Return to facility menu")
     print("6 | Exit Hospice Manager")
 
-def patient_handler(f_id):
+def patient_handler(match):
     patient_menu()
     selection = input("> ")
     while selection < "6":
         if selection == "1":
             search_p_name()
-            pt_search_handler(f_id)
+            pt_search_handler(match)
         elif selection == "2":
-            create_patient(f_id)
+            create_patient(match)
         elif selection == "3":
-            update_patient(f_id)
+            update_patient(match)
         elif selection == "4":
-            delete_patient(f_id)
+            delete_patient(match)
         elif selection == "5":
             facility_handler()
     
@@ -136,14 +136,14 @@ def pt_search_menu():
     print("3 | Return to facility menu")
     print("4 | Exit Hospice Manager")
 
-def pt_search_handler(f_id):
+def pt_search_handler(match):
     pt_search_menu()
     selection = input("> ")
     while selection < "4":
         if selection == "1":
-            update_patient(f_id)
+            update_patient(match)
         elif selection == "2":
-            delete_patient(f_id)
+            delete_patient(match)
         elif selection == "3":
             facility_handler()
         
