@@ -67,6 +67,8 @@ def f_sub_menu_handler():
             facility_handler()
         elif selection == "3":
             delete_facility()
+            list_facilities()
+            facility_handler()
         elif selection == "4":
             facility_handler()
     
@@ -90,6 +92,8 @@ def f_search_handler():
             facility_handler()
         elif selection == "2":
             delete_facility()
+            list_facilities()
+            facility_handler()
         elif selection == "3":
             facility_handler()
 

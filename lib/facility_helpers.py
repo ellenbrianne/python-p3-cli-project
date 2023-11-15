@@ -49,11 +49,15 @@ def update_facility():
         print(f"Facility {choice} not found")
 
 def delete_facility():
+    ## still having trouble with error handling 
     choice = int(input("Enter the number of the facility you want to delete: "))
     facilities = Facility.get_all()
 
     if match := facilities[choice - 1]:
-        match.delete()
-        print(f"Facility {choice} successfully deleted.")
+        try:
+            match.delete()
+            print(f"Facility {choice} successfully deleted.")
+        except Exception as exc:
+            print(f"Error finding facility:", exc)
     else:
         print(f"Facility {choice} not found.")
