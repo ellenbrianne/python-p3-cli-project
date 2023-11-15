@@ -24,9 +24,8 @@ def create_facility():
 def update_facility():
     choice = int(input("Enter the number of the facility you want to update: "))
     facilities = Facility.get_all()
-    match = facilities[choice - 1]
 
-    if match:
+    if match := facilities[choice - 1]:
         try:
             name = input("Enter the facility's new name: ")
             match.name = name
@@ -40,10 +39,11 @@ def update_facility():
         print(f"Facility {choice} not found")
 
 def delete_facility():
-    id_ = input("Verify the number of the facility you want to delete: ")
-    if facility := Facility.find_by_id(id_):
-        facility.delete()
-        print(f"Facility {id_} successfully deleted!")
+    choice = int(input("Enter the number of the facility you want to delete: "))
+    facilities = Facility.get_all()
+    
+    if match := facilities[choice - 1]:
+        match.delete()
+        print(f"Facility {choice} successfully deleted.")
     else:
-        print(f"Facility {id_} not found")
-
+        print(f"Facility {choice} not found.")
