@@ -16,8 +16,9 @@ def create_patient(id_):
         print("Error -- patient was not added because:", exc)
 
 def update_patient(id_):
-    p_id = input("Verify the number of the patient you want to update: ")
-    if patient := Patient.find_by_id(p_id):
+    choice  = input("Enter the number of the patient you want to update: ")
+    patients = Patient.get_all()
+    if choice := patients[choice - 1]:
         try:
             name = input("Enter the patient's new name: ")
             patient.name = name
@@ -45,7 +46,8 @@ def match_patients():
     if facility := Facility.find_by_id(id_):
         patients = facility.find_patients()
         print(f"{facility.name}'s PATIENTS:")
-        for p in patients: print(p)
+        for index, p in enumerate(patients, start=1): 
+            print(f"{index} | {p.name}, {p.diagnosis}")
     else:
         print(f"No matching patients found for Facility {id_}")
     return id_
