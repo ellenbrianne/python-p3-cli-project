@@ -115,7 +115,7 @@ def patient_handler(match):
     selection = input("> ")
     while selection < "6":
         if selection == "1":
-            search_p_name()
+            search_p_name(match)
             pt_search_handler(match)
         elif selection == "2":
             create_patient(match)

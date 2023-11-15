@@ -8,7 +8,6 @@ def list_facilities():
 
 def search_f_name():
     name = input("Enter the facility's name: ")
-    match = Facility.find_by_name(name)
     facilities = Facility.get_all()
     
     if match := Facility.find_by_name(name):
@@ -34,22 +33,23 @@ def create_facility():
 def update_facility():
     choice = input("Enter the number of the facility you want to update: ")
     facilities = Facility.get_all()
+
     while choice == "":
         print("Please provide a number")
         choice = input("Enter the number of the facility you want to update: ")
-    else:
-        if match := facilities[int(choice) - 1]:
-            try:
-                name = input("Enter the facility's new name: ")
-                match.name = name
-                location = input("Enter the facility's new location: ")
-                match.location = location
-                match.update()
-                print(f"Successfully udpated: {int(choice)} | {match.name} in {match.location}")
-            except Exception as exc:
-                print(f"Error updating this facility:", exc)
-        else: 
-            print(f"Facility {int(choice)} not found")
+
+    if match := facilities[int(choice) - 1]:
+        try:
+            name = input("Enter the facility's new name: ")
+            match.name = name
+            location = input("Enter the facility's new location: ")
+            match.location = location
+            match.update()
+            print(f"Successfully udpated: {int(choice)} | {match.name} in {match.location}")
+        except Exception as exc:
+            print(f"Error updating this facility:", exc)
+    else: 
+        print(f"Facility {int(choice)} not found")
  
 def delete_facility():
     choice = input("Enter the number of the facility you want to delete: ")
