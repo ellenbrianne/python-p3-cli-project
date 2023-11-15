@@ -22,7 +22,13 @@ open the project and run
 
 in your terminal to install the necessary dependencies.
 
-2. If you're just looking for an example of how the project functions, run
+2. To get the database up and ready to accept new facilities and patients, run
+
+`python lib/config.py`
+
+OR 
+
+If you're looking for an example of how the project functions, run
 
 `python lib/seed.py`
 
