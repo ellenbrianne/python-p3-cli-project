@@ -24,26 +24,38 @@ def create_patient(f):
     except Exception as exc:
         print("Error -- patient was not added because:", exc)
 
-def update_patient(f_id):
-    choice  = int(input("Enter the number of the patient you want to update: "))
+def update_patient(f):
+    choice  = input("Enter the number of the patient you want to update: ")
 
     from models.facility import Facility
-    facility = Facility.find_by_id(f_id)
+    facility = Facility.find_by_id(f.id)
     patients = facility.find_patients()
 
-    if match := patients[choice - 1]:
-        try:
-            name = input("Enter the patient's new name: ")
-            match.name = name
-            diagnosis = input("Enter the patient's new diagnosis: ")
-            match.diagnosis = diagnosis
-            match.facility_id = int(f_id)
-            match.update()
-            print(f"Successfully udpated: {choice} | {match.name}, {match.diagnosis}")
-        except Exception as exc:
-            print(f"Error updating this patient:", exc)
-    else: 
-        print(f"Patient {choice} not found")
+    if choice == "":
+        print("Please provide a number")
+        choice  = input("Enter the number of the patient you want to update: ")
+    else:
+        if match := patients[int(choice) - 1]:
+            try:
+                name = input("Enter the patient's new name: ")
+                match.name = name
+                diagnosis = input("Enter the patient's new diagnosis: ")
+                match.diagnosis = diagnosis
+                match.facility_id = int(f.id)
+                match.update()
+                print(f"Successfully udpated: {int(choice)} | {match.name}, {match.diagnosis}")
+
+                newly_added_p = f.find_patients()
+                print(f"{f.name}'s PATIENTS:")
+                for index, p in enumerate(newly_added_p, start=1):
+                    print(f"{index} | {p.name}, {p.diagnosis}")
+
+                from cli_submenus import patient_handler
+                patient_handler(f)
+            except Exception as exc:
+                print(f"Error updating this patient:", exc)
+        else: 
+            print(f"Patient {int(choice)} not found")
 
 def delete_patient(f_id):
     choice = int(input("Enter the number of the patient you want to delete: "))
