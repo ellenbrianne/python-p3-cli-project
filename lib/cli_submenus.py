@@ -16,7 +16,7 @@ from patient_helpers import (
     
 def facility_menu():
     print("Facility Menu:")
-    print("1 | List all of my facilities")
+    print("1 | Access my facilities")
     print("2 | Search for a facility by name")
     print("3 | Add a new facility to my list")
     print("4 | Return to main menu")
@@ -33,6 +33,8 @@ def facility_handler():
             search_f_name()
         elif selection == "3":
             create_facility()
+            list_facilities()
+            facility_handler()
         elif selection == "4":
             from cli import main
             main()
@@ -61,6 +63,8 @@ def f_sub_menu_handler():
             patient_handler(f_id)
         elif selection == "2":
             update_facility()
+            list_facilities()
+            facility_handler()
         elif selection == "3":
             delete_facility()
         elif selection == "4":
@@ -74,17 +78,23 @@ def f_search_menu():
     print("1 | Update info")
     print("2 | Delete this facility")
     print("3 | Return to facility menu")
+    print("4 | Exit Hospice Manager")
 
 def f_search_handler():
     f_search_menu()
     selection = input("> ")
-    if selection == "1":
-        update_facility()
-    elif selection == "2":
-        delete_facility()
-    elif selection == "3":
-        facility_handler()
+    while selection < "4":
+        if selection == "1":
+            update_facility()
+            list_facilities()
+            facility_handler()
+        elif selection == "2":
+            delete_facility()
+        elif selection == "3":
+            facility_handler()
 
+    from cli import exit_manager
+    exit_manager()
 
 
 

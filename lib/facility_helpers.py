@@ -8,23 +8,26 @@ def list_facilities():
 
 def search_f_name():
     name = input("Enter the facility's name: ")
-    facility = Facility.find_by_name(name)
-    if facility:
-        print(f"{facility.name} in {facility.location}")
+    match = Facility.find_by_name(name)
+    facilities = Facility.get_all()
+    
+    if match := Facility.find_by_name(name):
+        for index, f in enumerate(facilities, start=1):
+                if match.name == f.name:
+                    print(f"{index} | {f.name} in {f.location}")
         from cli_submenus import f_search_handler
         f_search_handler()
     else:
         print("This facility could not be found")
         from cli_submenus import facility_handler
         facility_handler()
-    
 
 def create_facility():
     name = input("Enter the new facility's name: ")
     location = input("Enter the new facility's location: ")
     try:
-        facility = Facility.create(name, location)
-        print(f"{name} has been added to your facilities!\n{facility}")
+        Facility.create(name, location)
+        print(f"{name} has been added to your facilities!")
     except Exception as exc:
         print("Facility could not be added --", exc)
 
