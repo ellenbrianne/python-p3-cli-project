@@ -3,7 +3,8 @@ from models.facility import Facility
 def list_facilities():
     facilities = Facility.get_all()
     print("FACILITIES:")
-    for f in facilities: print(f)
+    for index, f in enumerate(facilities, start=1): 
+        print(f"{index} | {f.name} in {f.location}")
 
 def search_f_name():
     name = input("Enter the facility's name: ")
