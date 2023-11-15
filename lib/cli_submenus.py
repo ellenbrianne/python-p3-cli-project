@@ -5,14 +5,6 @@ from facility_helpers import (
     update_facility,
     delete_facility
 )
-
-from patient_helpers import (
-    search_p_name,
-    create_patient,
-    update_patient,
-    delete_patient,
-    match_patients
-)
     
 def facility_menu():
     print("Facility Menu:")
@@ -41,8 +33,6 @@ def facility_handler():
 
     from cli import exit_manager
     exit_manager()
-
-
 
 
 
@@ -75,6 +65,8 @@ def f_sub_menu_handler():
     from cli import exit_manager
     exit_manager()
 
+
+
 def f_search_menu():
     print("What would you like to do with this facility? ")
     print("1 | Update info")
@@ -101,6 +93,13 @@ def f_search_handler():
     exit_manager()
 
 
+from patient_helpers import (
+    search_p_name,
+    create_patient,
+    update_patient,
+    delete_patient,
+    match_patients
+)
 
 def patient_menu():
     print("How would you like to handle these patients?")
@@ -109,34 +108,44 @@ def patient_menu():
     print("3 | Update one of these patients")
     print("4 | Remove one of these patients")
     print("5 | Return to facility menu")
+    print("6 | Exit Hospice Manager")
 
 def patient_handler(f_id):
     patient_menu()
     selection = input("> ")
-    if selection == "1":
-        search_p_name()
-        pt_search_handler(f_id)
-    elif selection == "2":
-        create_patient(f_id)
-    elif selection == "3":
-        update_patient(f_id)
-    elif selection == "4":
-        delete_patient(f_id)
-    elif selection == "5":
-        facility_handler()
+    while selection < "6":
+        if selection == "1":
+            search_p_name()
+            pt_search_handler(f_id)
+        elif selection == "2":
+            create_patient(f_id)
+        elif selection == "3":
+            update_patient(f_id)
+        elif selection == "4":
+            delete_patient(f_id)
+        elif selection == "5":
+            facility_handler()
+    
+    from cli import exit_manager
+    exit_manager()
 
 def pt_search_menu():
     print("What would you like to do with this patient? ")
     print("1 | Update info")
     print("2 | Delete this patient")
     print("3 | Return to facility menu")
+    print("4 | Exit Hospice Manager")
 
 def pt_search_handler(f_id):
     pt_search_menu()
     selection = input("> ")
-    if selection == "1":
-        update_patient(f_id)
-    elif selection == "2":
-        delete_patient(f_id)
-    elif selection == "3":
-        facility_handler()
+    while selection < "4":
+        if selection == "1":
+            update_patient(f_id)
+        elif selection == "2":
+            delete_patient(f_id)
+        elif selection == "3":
+            facility_handler()
+        
+    from cli import exit_manager
+    exit_manager()

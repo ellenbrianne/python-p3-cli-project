@@ -32,9 +32,9 @@ def create_facility():
         print("Facility could not be added --", exc)
 
 def update_facility():
+    ## trouble with error handling when input is ' '
     choice = int(input("Enter the number of the facility you want to update: "))
     facilities = Facility.get_all()
-
     if match := facilities[choice - 1]:
         try:
             name = input("Enter the facility's new name: ")
@@ -47,9 +47,9 @@ def update_facility():
             print(f"Error updating this facility:", exc)
     else: 
         print(f"Facility {choice} not found")
-
+ 
 def delete_facility():
-    ## still having trouble with error handling 
+    ## trouble with error handling when input is ' '
     choice = int(input("Enter the number of the facility you want to delete: "))
     facilities = Facility.get_all()
 
