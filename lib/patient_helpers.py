@@ -57,18 +57,30 @@ def update_patient(f):
         else: 
             print(f"Patient {int(choice)} not found")
 
-def delete_patient(f_id):
-    choice = int(input("Enter the number of the patient you want to delete: "))
+def delete_patient(f):
+    choice = input("Enter the number of the patient you want to delete: ")
 
     from models.facility import Facility
-    facility = Facility.find_by_id(f_id)
+    facility = Facility.find_by_id(f.id)
     patients = facility.find_patients()
 
-    if match := patients[choice - 1]:
-        match.delete()
-        print(f"Patient {choice} successfully deleted!")
+    if  not choice == "":
+        if match := patients[int(choice) - 1]:
+            match.delete()
+            print(f"Patient {choice} successfully deleted!")
+
+            new_p_list = f.find_patients()
+            print(f"{f.name}'s PATIENTS:")
+            for index, p in enumerate(new_p_list, start=1):
+                print(f"{index} | {p.name}, {p.diagnosis}")
+            
+            from cli_submenus import patient_handler
+            patient_handler(f)
+        else:
+            print(f"Patient {int(choice)} not found")
     else:
-        print(f"Patient {choice} not found")
+        print("Please provide a number")
+        choice = input("Enter the number of the patient you want to delete: ")
 
 def match_patients():
     choice = int(input("Enter the facility's number to view their patients: "))
