@@ -51,8 +51,8 @@ def f_sub_menu_handler():
     f_sub_menu()
     selection = input("> ")
     if selection == "1":
-        id_ = match_patients()
-        patient_handler(id_)
+        f_id = match_patients()
+        patient_handler(f_id)
     elif selection == "2":
         update_facility()
     elif selection == "3":
@@ -87,18 +87,18 @@ def patient_menu():
     print("4 | Remove one of these patients")
     print("5 | Return to facility menu")
 
-def patient_handler(id_):
+def patient_handler(f_id):
     patient_menu()
     selection = input("> ")
     if selection == "1":
         search_p_name()
-        pt_search_handler(id_)
+        pt_search_handler(f_id)
     elif selection == "2":
-        create_patient(id_)
+        create_patient(f_id)
     elif selection == "3":
-        update_patient(id_)
+        update_patient(f_id)
     elif selection == "4":
-        delete_patient()
+        delete_patient(f_id)
     elif selection == "5":
         facility_handler()
 
@@ -108,12 +108,12 @@ def pt_search_menu():
     print("2 | Delete this patient")
     print("3 | Return to facility menu")
 
-def pt_search_handler(id_):
+def pt_search_handler(f_id):
     pt_search_menu()
     selection = input("> ")
     if selection == "1":
-        update_patient(id_)
+        update_patient(f_id)
     elif selection == "2":
-        delete_patient()
+        delete_patient(f_id)
     elif selection == "3":
         facility_handler()
