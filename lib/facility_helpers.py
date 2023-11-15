@@ -32,32 +32,36 @@ def create_facility():
         print("Facility could not be added --", exc)
 
 def update_facility():
-    ## trouble with error handling when input is ' '
-    choice = int(input("Enter the number of the facility you want to update: "))
+    choice = input("Enter the number of the facility you want to update: ")
     facilities = Facility.get_all()
-    if match := facilities[choice - 1]:
-        try:
-            name = input("Enter the facility's new name: ")
-            match.name = name
-            location = input("Enter the facility's new location: ")
-            match.location = location
-            match.update()
-            print(f"Successfully udpated: {choice} | {match.name} in {match.location}")
-        except Exception as exc:
-            print(f"Error updating this facility:", exc)
-    else: 
-        print(f"Facility {choice} not found")
+    while choice == "":
+        print("Please provide a number")
+        choice = input("Enter the number of the facility you want to update: ")
+    else:
+        if match := facilities[int(choice) - 1]:
+            try:
+                name = input("Enter the facility's new name: ")
+                match.name = name
+                location = input("Enter the facility's new location: ")
+                match.location = location
+                match.update()
+                print(f"Successfully udpated: {int(choice)} | {match.name} in {match.location}")
+            except Exception as exc:
+                print(f"Error updating this facility:", exc)
+        else: 
+            print(f"Facility {int(choice)} not found")
  
 def delete_facility():
-    ## trouble with error handling when input is ' '
-    choice = int(input("Enter the number of the facility you want to delete: "))
+    choice = input("Enter the number of the facility you want to delete: ")
     facilities = Facility.get_all()
-
-    if match := facilities[choice - 1]:
+    while choice == "":
+        print("Please provide a number")
+        choice = input("Enter the number of the facility you want to delete: ")
+    if match := facilities[int(choice) - 1]:
         try:
             match.delete()
-            print(f"Facility {choice} successfully deleted.")
+            print(f"Facility {int(choice)} successfully deleted.")
         except Exception as exc:
             print(f"Error finding facility:", exc)
     else:
-        print(f"Facility {choice} not found.")
+        print(f"Facility {int(choice)} not found.")
