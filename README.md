@@ -20,7 +20,11 @@ open the project and run
 
 `pipenv install`
 
-in your terminal to install the necessary dependencies.
+in your terminal to install the necessary dependencies, and then 
+
+`pipenv shell`
+
+to access the installed dependencies.
 
 2. To get the database up and ready to accept new facilities and patients, run
 

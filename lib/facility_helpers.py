@@ -19,22 +19,25 @@ def create_facility():
         facility = Facility.create(name, location)
         print(f"{name} has been added to your facilities!\n{facility}")
     except Exception as exc:
-        print("Error -- facility was not added because:", exc)
+        print("Facility could not be added --", exc)
 
 def update_facility():
-    id_ = input("Verify the number of the facility you want to update: ")
-    if facility := Facility.find_by_id(id_):
+    choice = int(input("Enter the number of the facility you want to update: "))
+    facilities = Facility.get_all()
+    match = facilities[choice - 1]
+
+    if match:
         try:
             name = input("Enter the facility's new name: ")
-            facility.name = name
+            match.name = name
             location = input("Enter the facility's new location: ")
-            facility.location = location
-            facility.update()
-            print(f"Successfully udpated: {facility}")
+            match.location = location
+            match.update()
+            print(f"Successfully udpated: {choice} | {match.name} in {match.location}")
         except Exception as exc:
             print(f"Error updating this facility:", exc)
     else: 
-        print(f"Facility {id_} not found")
+        print(f"Facility {choice} not found")
 
 def delete_facility():
     id_ = input("Verify the number of the facility you want to delete: ")
