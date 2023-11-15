@@ -9,8 +9,15 @@ def list_facilities():
 def search_f_name():
     name = input("Enter the facility's name: ")
     facility = Facility.find_by_name(name)
-    print(facility) if facility else print(
-        f"{name} not found")
+    if facility:
+        print(f"{facility.name} in {facility.location}")
+        from cli_submenus import f_search_handler
+        f_search_handler()
+    else:
+        print("This facility could not be found")
+        from cli_submenus import facility_handler
+        facility_handler()
+    
 
 def create_facility():
     name = input("Enter the new facility's name: ")
@@ -41,7 +48,7 @@ def update_facility():
 def delete_facility():
     choice = int(input("Enter the number of the facility you want to delete: "))
     facilities = Facility.get_all()
-    
+
     if match := facilities[choice - 1]:
         match.delete()
         print(f"Facility {choice} successfully deleted.")

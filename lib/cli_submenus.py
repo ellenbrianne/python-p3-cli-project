@@ -20,21 +20,25 @@ def facility_menu():
     print("2 | Search for a facility by name")
     print("3 | Add a new facility to my list")
     print("4 | Return to main menu")
+    print("5 | Exit Hospice Manager")
 
 def facility_handler():
     facility_menu()
     selection = input("> ")
-    if selection == "1":
-        list_facilities()
-        f_sub_menu_handler()
-    elif selection == "2":
-        search_f_name()
-        f_search_handler()
-    elif selection == "3":
-        create_facility()
-    elif selection == "4":
-        from cli import main
-        main()
+    while selection < "5":
+        if selection == "1":
+            list_facilities()
+            f_sub_menu_handler()
+        elif selection == "2":
+            search_f_name()
+        elif selection == "3":
+            create_facility()
+        elif selection == "4":
+            from cli import main
+            main()
+
+    from cli import exit_manager
+    exit_manager()
 
 
 
@@ -46,19 +50,24 @@ def f_sub_menu():
     print("2 | Update a facility")
     print("3 | Delete a facility")
     print("4 | Return to facility menu")
+    print("5 | Exit Hospice Manager")
     
 def f_sub_menu_handler():
     f_sub_menu()
     selection = input("> ")
-    if selection == "1":
-        f_id = match_patients()
-        patient_handler(f_id)
-    elif selection == "2":
-        update_facility()
-    elif selection == "3":
-        delete_facility()
-    elif selection == "4":
-        facility_handler()
+    while selection < "5":
+        if selection == "1":
+            f_id = match_patients()
+            patient_handler(f_id)
+        elif selection == "2":
+            update_facility()
+        elif selection == "3":
+            delete_facility()
+        elif selection == "4":
+            facility_handler()
+    
+    from cli import exit_manager
+    exit_manager()
 
 def f_search_menu():
     print("What would you like to do with this facility? ")
