@@ -9,9 +9,6 @@ class Patient:
         self.name = name
         self.diagnosis = diagnosis
         self.facility_id = facility_id
-
-    def __str__(self):
-        return f"{self.id} | {self.name}, {self.diagnosis}"
     
     @property
     def name(self):
